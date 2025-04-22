@@ -9,6 +9,6 @@ export default defineSchema(
       image: v.optional(v.string()),
       clerkId: v.string(),
       role: v.union(v.literal("candidate"), v.literal("interviewer")),
-    })
+    }).index("by_clerk_id", ["clerkId"]),
   }
-)
+);
