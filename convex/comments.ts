@@ -21,3 +21,15 @@ export const addComment = mutation({
     })
   }
 })
+
+
+// get all comments for an interview
+export const getComments = query({
+  args: { interviewId: v.id("interviews") },
+  handler: async (ctx, args) => {
+    const comments = await ctx.db.query("comments")
+      .withIndex("by_interview_id", (q) => q.eq("interviewId", args.interviewId))
+      .collect();
+    return comments;
+  }
+})
