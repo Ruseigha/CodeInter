@@ -5,6 +5,7 @@ import ConvexClerkProvider from "@/components/Providers/ConvexClerkProvider";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/Providers/theme-provider";
 import { RedirectToSignIn, SignedIn, SignedOut } from "@clerk/nextjs";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,7 +51,8 @@ export default function RootLayout({
             <SignedOut>
               <RedirectToSignIn/>
             </SignedOut>
-          </ThemeProvider>  
+          </ThemeProvider>
+          <Toaster/>  
         </body>
       </html>
     </ConvexClerkProvider>
