@@ -37,3 +37,29 @@ export const getInterviewByStreamCallId = query({
       .first();
   }
 })
+
+
+export const createInterview = mutation({
+  args: {
+    title: v.string(),
+    description: v.optional(v.string()),
+    streamCallId: v.string(),
+    startTime: v.number(),
+    candidateId: v.string(),
+    interviewerIds: v.array(v.string()),
+    status: v.string(),
+  },
+
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("User is not authenticated");
+
+    const interview = await ctx.db.insert("interviews", {
+      ...args,
+    });
+
+    return interview;
+  }
+});
+
+
