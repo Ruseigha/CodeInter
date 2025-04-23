@@ -1,11 +1,15 @@
+"use client"
+
 import Link from "next/link"
 import { Button } from "./ui/button"
 import { SparklesIcon } from "lucide-react"
+import { useUserRole } from "@/hooks/useUserRole"
 
 const DasboardBtn = () => {
-  const isCandidate = true // Replace with actual logic to check if the user is a candidate
+  
+  const { isCandidate, isLoading } = useUserRole();
 
-  if (isCandidate) return null;
+  if (isCandidate || isLoading) return null;
 
   return (
     <Link href={"/dashboard"}>
