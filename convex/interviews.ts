@@ -62,4 +62,19 @@ export const createInterview = mutation({
   }
 });
 
+export const updateInterviewStatus = mutation({
+  args: {
+    interviewId: v.id("interviews"),
+    status: v.string(),
+  },
 
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("User is not authenticated");
+
+    return ctx.db.patch(args.interviewId, {
+      status: args.status,
+      ...(args.status === "completed" ? { endTime: Date.now() } : {} )
+    })
+  }
+});
