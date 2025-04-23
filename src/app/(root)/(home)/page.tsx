@@ -4,15 +4,12 @@ import { useState } from "react"
 import ActionCard from "@/components/ActionCard"
 import { QUICK_ACTIONS } from "@/constants"
 import { useUserRole } from "@/hooks/useUserRole"
-import { useQuery } from "convex/react"
-import { api } from "../../../../convex/_generated/api"
 import { useRouter } from "next/navigation"
 import MeetingModal from "@/components/MeetingModel"
 import LoaderUI from "@/components/LoaderUI"
 
 const HomePage = () => {
-  const {isInterviewer, isCandidate, isLoading} = useUserRole();
-  const interviews = useQuery(api.interviews.getMyInterviews);
+  const {isInterviewer, isLoading} = useUserRole();
   const router = useRouter();
   const [showModel, setShowModel] = useState(false);
   const [modelType, setModelType] = useState<"start" | "join">();
