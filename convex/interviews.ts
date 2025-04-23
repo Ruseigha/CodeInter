@@ -77,4 +77,4 @@ export const updateInterviewStatus = mutation({
       ...(args.status === "completed" ? { endTime: Date.now() } : {} )
     })
   }
-});
+}); 
