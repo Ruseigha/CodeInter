@@ -9,7 +9,7 @@ const http = httpRouter();
 
 
 http.route({
-  path: "/clerk-webhook",
+  path: "/clerk-webhook", 
   method: "POST",
   handler: httpAction(async (ctx, request) => {
     const webhookSecret = process.env.CLERK_WEBHOOK_SECRET;
@@ -40,7 +40,7 @@ http.route({
     } catch (error) {
       console.error("Error verifying webhook:", error);
       return new Response("Invalid signature", { status: 401 });
-    }
+    } 
 
     const eventType = event.type;
     
