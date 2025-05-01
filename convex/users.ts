@@ -14,7 +14,7 @@ export const syncUser = mutation({
     await ctx.db.insert("users", {
       ...args,
       role: "interviewer",
-    })
+    })                                                                                                                                     
   }
 });
 
